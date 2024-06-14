@@ -160,7 +160,7 @@ body{
 .navbar.sticky .icon.cancel-btn{
   top: 10px;
 }
-@media (max-width: 1081px) {
+@media (orientation: portrait) {
   body.disabledScroll{
     overflow: hidden;
   }
