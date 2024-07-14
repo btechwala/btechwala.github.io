@@ -126,7 +126,7 @@ document.querySelectorAll(".dlbtn").forEach(button => {
     const adWindow = window.open(adLink, "_blank");
 
     // Generate a random delay between 4500 and 7500 milliseconds (4.5 to 7.5 seconds)
-    const randomDelay = Math.floor(Math.random() * (11500 - 7500 + 1)) + 7500;
+    const randomDelay = Math.floor(Math.random() * (7500 - 4500 + 1)) + 4500;
 
     // Wait for the random delay and then close the ad window
     setTimeout(function() {
