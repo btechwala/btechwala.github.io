@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://fundingchoicesmessages.google.com/i/pub-5138737917714299?ers=1" nonce="gW0LM5W-5mYDBr8k6aDIPQ"></script><script nonce="gW0LM5W-5mYDBr8k6aDIPQ">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+    <meta name="google-adsense-account" content="ca-pub-5138737917714299">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5138737917714299"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>b.techwala - Subject</title>
+    <meta property="og:title" content="b.techwala - Subject">
+    <meta property="og:description" content="All notes, assignments and Papers for B.Tech">
+    <meta property="og:image" content="https://raw.githubusercontent.com/btechwala/btechwala.github.io/main/pic/bb.png">
+    <meta property="og:url" content="btechwala.co.in">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="pic/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="content">
+      <div class="logo"><span style="color: red;">b.</span>techwala</div>
+      <ul class="menu-list">
+        <div class="icon cancel-btn">
+          <img src="pic/twhite.png" height="50px">
+        </div>
+        <li><a href="index.html">Home</a></li>
+        <li><a id="howtodownload" target="_blank">How to download?</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+        <li><a href="#" id="dmode">Dark Mode</a></li>
+      </ul>
+      
+      <div class="icon menu-btn">
+        <img src="pic/blwhite.png" height="50px">
+      </div>
+    </div>
+  </nav>
+
+  <div class="banner2"></div>
+  <div class="about">
+    <div class="content">
+      <div class="title"><span id="subject-title" style="font-size: 35px; font-weight: 800;">Resources</span></div><br>
+      <div id="resource-content">
+        <!-- Resources will be dynamically loaded here -->
+      </div>
+      <p class="note">Note: Click on the buttons to download the resources.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Function to load JSON data
+    async function loadData() {
+      try {
+        const response = await fetch('data.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Data loaded successfully for subject.html:', data);
+        renderResources(data);
+      } catch (error) {
+        console.error('Error loading data in subject.html:', error);
+        document.getElementById('resource-content').innerHTML = '<p>Error loading data. Please check console for details.</p>';
+      }
+    }
+
+    // Function to render resources dynamically based on URL
+    function renderResources(data) {
+      const resourceContainer = document.getElementById('resource-content');
+      const urlParams = new URLSearchParams(window.location.search);
+      const yearKey = urlParams.get('year');
+      const subjectKey = urlParams.get('subject');
+      let resourceHTML = '';
+      
+      // Check if the year and subject exist in data.home
+      if (data.home[yearKey] && data.home[yearKey][subjectKey]) {
+        console.log('Year found:', yearKey);
+        console.log('Subject found:', subjectKey);
+        const yearName = yearKey.charAt(0).toUpperCase() + yearKey.slice(1);
+        const subjectName = subjectKey.charAt(0).toUpperCase() + subjectKey.slice(1);
+        document.title = `b.techwala - ${yearName} Year - ${subjectName}`;
+        document.getElementById('subject-title').textContent = subjectName;
+        
+        // Get all categories for the subject
+        const subjectData = data.home[yearKey][subjectKey];
+        
+        // Define the order of categories, ensuring 'paper' is last and 'assignments' is before 'paper'
+        const categoryOrder = ['notes', 'assignments', 'practical', 'paper'];
+        const orderedCategories = Object.keys(subjectData).sort((a, b) => {
+          const aIndex = categoryOrder.indexOf(a.toLowerCase()) !== -1 ? categoryOrder.indexOf(a.toLowerCase()) : categoryOrder.length - 2;
+          const bIndex = categoryOrder.indexOf(b.toLowerCase()) !== -1 ? categoryOrder.indexOf(b.toLowerCase()) : categoryOrder.length - 2;
+          return aIndex - bIndex;
+        });
+        
+        // Loop through each category in the defined order
+        for (const category of orderedCategories) {
+          if (subjectData[category]) {
+            const content = subjectData[category];
+            const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+            resourceHTML += `<br>`;
+            // Check if content has sub-categories (nested objects) or direct items
+            if (Object.values(content)[0] && typeof Object.values(content)[0] === 'object') {
+              // Content has sub-categories (e.g., teacher names), use each as a heading in table header
+              for (const [subCategory, items] of Object.entries(content)) {
+                resourceHTML += `<table class="resource-table">`;
+                resourceHTML += `<thead><tr><th>${subCategory}</th><th></th></tr></thead>`;
+                resourceHTML += `<tbody>`;
+                for (const [item, file] of Object.entries(items)) {
+                  resourceHTML += `<tr><td class="tblname">${item}</td><td class="tbllink"><button class="dlbtn"><a href="${file}" target="_blank" download class="dlbtn-full">Download</a></button></td></tr>`;
+                }
+                resourceHTML += `</tbody></table>`;
+                resourceHTML += `<br>`;
+              }
+            } else {
+              // Direct items without sub-categories, use category name as heading
+              resourceHTML += `<table class="resource-table">`;
+              resourceHTML += `<thead><tr><th>${categoryName}</th><th></th></tr></thead>`;
+              resourceHTML += `<tbody>`;
+              for (const [item, file] of Object.entries(content)) {
+                const itemName = item.charAt(0).toUpperCase() + item.slice(1);
+                resourceHTML += `<tr><td class="tblname">${itemName}</td><td class="tbllink"><button class="dlbtn"><a href="${file}" target="_blank" download class="dlbtn-full">Download</a></button></td></tr>`;
+              }
+              resourceHTML += `</tbody></table>`;
+            }
+          }
+        }
+      } else {
+        if (!data.home[yearKey]) {
+          console.error('Year not found:', yearKey);
+          resourceHTML = `<p>Year not found.</p>`;
+        } else {
+          console.error('Subject not found:', subjectKey);
+          resourceHTML = `<p>Subject not found.</p>`;
+        }
+      }
+      
+      resourceHTML += `<br><br><br>`;
+      resourceContainer.innerHTML = resourceHTML;
+    }
+
+    // Load data when the page loads
+    window.onload = loadData;
+  </script>
+</body>
+</html>

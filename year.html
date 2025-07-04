@@ -7,9 +7,9 @@
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>b.techwala</title>
-    <meta property="og:title" content="b.techwala">
-    <meta property="og:description" content="All notes,assignments and Papers for B.Tech">
+    <title>b.techwala - Year</title>
+    <meta property="og:title" content="b.techwala - Year">
+    <meta property="og:description" content="All notes, assignments and Papers for B.Tech">
     <meta property="og:image" content="https://raw.githubusercontent.com/btechwala/btechwala.github.io/main/pic/bb.png">
     <meta property="og:url" content="btechwala.co.in">
     <meta property="og:type" content="website">
@@ -37,17 +37,14 @@
     </div>
   </nav>
 
-  <div class="banner"></div>
+  <div class="banner2"></div>
   <div class="about">
     <div class="content">
-      <div class="title"><span style="font-size: 35px; font-weight: 800;">Welcome to</span><br><span style="color: red;">b.</span>techwala</div><br>
-      <p class="text">Here you'll find all the assignments, notes and papers from B.Tech First year <br>I hope you find what you came looking for !<br><span style="font-weight: 1000;">Thank you</span></p>
-      <br><br><br>
-      <h1><span style="font-size: 35px; font-weight:600;">Select your Year</span></h1><br>
-      <div id="year-buttons">
-        <!-- Year buttons will be dynamically loaded here -->
+      <div class="title"><span style="font-size: 35px; font-weight: 800;">Select Subject</span></div><br>
+      <div id="group-buttons">
+        <!-- Subject buttons will be dynamically loaded here -->
       </div>
-      <p class="note">Note: You will find sessional papers in Group->Subject->Papers</p>
+      <p class="note">Note: You will find sessional papers in Subject->Papers</p>
     </div>
   </div>
 
@@ -61,25 +58,38 @@
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Data loaded successfully:', data);
-        renderYears(data);
+        console.log('Data loaded successfully for year.html:', data);
+        renderSubjects(data);
       } catch (error) {
-        console.error('Error loading data:', error);
-        document.getElementById('year-buttons').innerHTML = '<p>Error loading data. Please check console for details.</p>';
+        console.error('Error loading data in year.html:', error);
+        document.getElementById('group-buttons').innerHTML = '<p>Error loading data. Please check console for details.</p>';
       }
     }
 
-    // Function to render year buttons dynamically
-    function renderYears(data) {
-      const yearContainer = document.getElementById('year-buttons');
-      let yearButtonsHTML = '';
-      const years = Object.keys(data.home); // Get keys like 'first', 'second'
-      years.forEach(yearKey => {
-        const yearName = yearKey.charAt(0).toUpperCase() + yearKey.slice(1); // Capitalize first letter
-        yearButtonsHTML += `<button class="grpbtn" onclick="window.location.href='year.html?year=${yearKey}'">${yearName} Year</button><br>`;
-      });
-      yearButtonsHTML += `<br><br><br>`;
-      yearContainer.innerHTML = yearButtonsHTML;
+    // Function to render subject buttons dynamically based on URL (no groups in data.json, directly subjects under year)
+    function renderSubjects(data) {
+      const subjectContainer = document.getElementById('group-buttons');
+      const urlParams = new URLSearchParams(window.location.search);
+      const yearKey = urlParams.get('year');
+      let subjectButtonsHTML = '';
+      
+      // Check if the year key exists in data.home
+      if (data.home[yearKey]) {
+        console.log('Year found:', yearKey);
+        const yearName = yearKey.charAt(0).toUpperCase() + yearKey.slice(1);
+        document.title = `b.techwala - ${yearName} Year`;
+        const subjects = Object.keys(data.home[yearKey]); // Get subjects like 'physics', 'chemistry'
+        subjects.forEach(subjectKey => {
+          const subjectName = subjectKey.charAt(0).toUpperCase() + subjectKey.slice(1); // Capitalize first letter
+          subjectButtonsHTML += `<button class="grpbtn" onclick="window.location.href='subject.html?year=${yearKey}&subject=${subjectKey}'">${subjectName}</button><br>`;
+        });
+      } else {
+        console.error('Year not found:', yearKey);
+        subjectButtonsHTML = `<p>Year not found.</p>`;
+      }
+      
+      subjectButtonsHTML += `<br><br><br>`;
+      subjectContainer.innerHTML = subjectButtonsHTML;
     }
 
     // Load data when the page loads

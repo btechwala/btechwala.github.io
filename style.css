@@ -240,6 +240,10 @@ body{
 .grpbtna{
   text-decoration: none;
   color: var(--background-color);
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: inherit;
 }
 .grpbtn:hover{
   background: var(--navbar-color);
@@ -248,7 +252,6 @@ body{
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0 0 10px var(--navbar-color), 0 0 20px var(--navbar-color), 0 0 30px var(--navbar-color), 0 0 35px var(--navbar-color);
-
 }
 .table-box{
   margin: 40px 0px;
@@ -337,4 +340,67 @@ body{
 .telegram img {
   width: 100%;
   height: 100%;
+}
+
+/* Styles for resource tables in subject.html */
+.resource-table {
+  display: table;
+  width: 90%;
+  margin: 20px auto;
+  color: var(--navbar-color);
+  box-shadow: 0 2px 10px var(--tableboxshadow-color);
+  border-radius: 5px;
+}
+.resource-table thead {
+  display: table-header-group;
+  background: var(--navbar-color);
+  color: var(--background-color);
+}
+.resource-table tbody {
+  display: table-row-group;
+}
+.resource-table tr {
+  display: table-row;
+}
+.resource-table th, .resource-table td {
+  display: table-cell;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--navbar-color);
+}
+.resource-table th {
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+}
+.resource-table td {
+  font-size: 16px;
+}
+.resource-table tr:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.darkmode .resource-table tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.resource-table .tblname {
+  text-align: left;
+  margin-left: 10px;
+  height: 60px;
+}
+.resource-table .tbllink {
+  width: 125px;
+  align-items: center;
+  border-right: none;
+}
+.dlbtn-full {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--background-color);
+  text-decoration: none;
+  line-height: 30px;
+}
+.dlbtn-full:hover {
+  text-decoration: underline;
 }
