@@ -50,7 +50,26 @@
   </div>
 
   <script src="script.js"></script>
-  <script>
+    <script>
+    // Object to track clicks for each download link
+    let clickTracker = {};
+
+    // Function to handle download button clicks
+    function handleDownloadClick(fileUrl, buttonId) {
+      if (!clickTracker[buttonId]) {
+        clickTracker[buttonId] = 0;
+      }
+      clickTracker[buttonId]++;
+      
+      if (clickTracker[buttonId] === 1) {
+        window.open('https://otieu.com/4/7733074', '_blank');
+        return false;
+      } else {
+        window.open(fileUrl, '_blank');
+        return false;
+      }
+    }
+
     // Function to load JSON data
     async function loadData() {
       try {
@@ -74,6 +93,7 @@
       const yearKey = urlParams.get('year');
       const subjectKey = urlParams.get('subject');
       let resourceHTML = '';
+      let buttonCounter = 0;
       
       // Check if the year and subject exist in data.home
       if (data.home[yearKey] && data.home[yearKey][subjectKey]) {
@@ -109,7 +129,9 @@
                 resourceHTML += `<thead><tr><th>${subCategory}</th><th></th></tr></thead>`;
                 resourceHTML += `<tbody>`;
                 for (const [item, file] of Object.entries(items)) {
-                  resourceHTML += `<tr><td class="tblname">${item}</td><td class="tbllink"><button class="dlbtn"><a href="${file}" target="_blank" download class="dlbtn-full">Download</a></button></td></tr>`;
+                  buttonCounter++;
+                  const buttonId = `btn_${buttonCounter}`;
+                  resourceHTML += `<tr><td class="tblname">${item}</td><td class="tbllink"><button class="dlbtn" id="${buttonId}" onclick="handleDownloadClick('${file}', '${buttonId}')">Download</button></td></tr>`;
                 }
                 resourceHTML += `</tbody></table>`;
                 resourceHTML += `<br>`;
@@ -120,8 +142,10 @@
               resourceHTML += `<thead><tr><th>${categoryName}</th><th></th></tr></thead>`;
               resourceHTML += `<tbody>`;
               for (const [item, file] of Object.entries(content)) {
+                buttonCounter++;
+                const buttonId = `btn_${buttonCounter}`;
                 const itemName = item.charAt(0).toUpperCase() + item.slice(1);
-                resourceHTML += `<tr><td class="tblname">${itemName}</td><td class="tbllink"><button class="dlbtn"><a href="${file}" target="_blank" download class="dlbtn-full">Download</a></button></td></tr>`;
+                resourceHTML += `<tr><td class="tblname">${itemName}</td><td class="tbllink"><button class="dlbtn" id="${buttonId}" onclick="handleDownloadClick('${file}', '${buttonId}')">Download</button></td></tr>`;
               }
               resourceHTML += `</tbody></table>`;
             }
