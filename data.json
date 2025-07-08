@@ -328,7 +328,7 @@
           "SEM 3 2022-23": "https://www.abesit.in/wp-content/uploads/2023/07/COMPUTER-ORGANIZATION-AND-ARCHITECTURE-KCS-302.pdf "
         }
       },
-      "CSS": {
+      "Cyber Security": {
         "notes": {
           "UNIT 1": "https://drive.google.com/file/d/14sPhceHIRdmbptYShAjpiQQRqrA5bGVL ",
           "UNIT 2": "https://drive.google.com/file/d/14rPN2jSSkuoas7byTdvdVOlvngn-eMO1 ",
@@ -336,6 +336,13 @@
           "UNIT 4": "https://drive.google.com/file/d/14kMwHuaN6C8PyhU517144Ek7pVLPVEC- ",
           "UNIT 5": "https://drive.google.com/file/d/14q4daVBdpWRqWL-_WMAICfFZnALFmy_u ",
           "Virtual Machine": "https://drive.google.com/file/d/14gh1_Mlw5RWDkqxulQevorWQcPBzduzz "
+        },
+        "Youtube Video (Gateway Classes)": {
+          "UNIT 1": ["https://youtu.be/tJX92DuL7Mc?si=dxEpBtf_WV1eRq1b", "Watch"],
+          "UNIT 2": ["https://youtu.be/SY-DaAZbiHA?si=VOJMC9LwJbv_fudC", "Watch"],
+          "UNIT 3": ["https://youtu.be/2KHc3Au_uJY?si=qk2O01jZuoBAO7zD", "Watch"],
+          "UNIT 4": ["https://youtu.be/MZADC3EV5Ak?si=InEngweWH51v83kK", "Watch"],
+          "UNIT 5": ["https://youtu.be/n23tfBJidX4?si=Fbbh8g4efLoguHCO", "Watch"]
         },
         "papers": {
           "AKTU 2023-24": "https://www.abesit.in/wp-content/uploads/2024/07/BCC301-CYBER-SECURITY.pdf ",
@@ -502,14 +509,13 @@
           "UNIT 2": "https://drive.google.com/file/d/1G2bIWR6HXKTe3JnVxaJSHud3HW_-1gv2 ",
           "UNIT 3": "https://drive.google.com/file/d/1Fy7JK5GWCzSgvDuHdQOdi889TS-dZGkY ",
           "UNIT 4": "https://drive.google.com/file/d/1FwOhBjHqCyAKdQR2NK-DfgOm4S1xl-9I ",
-          "UNIT 5": "https://drive.google.com/file/d/1GKbjSGoSabD1rB_e7PeMKqRtvIjLK4y2 ",
-          "AQSA ma'am notes": {
-            "UNIT 1": "https://drive.google.com/file/d/1GpTu_oRukWkB-2x4zmIcntWUbI-FX5Dp ",
-            "UNIT 2": "https://drive.google.com/file/d/1GI2hihZrFaZ0cwhn-KZgpbxwgiEqVd4N ",
-            "UNIT 3": "https://drive.google.com/file/d/1GmOpxc1yFRMQLNqS2txsjNHA7ZMduTk4 ",
-            "UNIT 4": "https://drive.google.com/file/d/1GfgRA3Hj2CRlCW6IzXKyySjgYZyuFHBE ",
-            "UNIT 5": "https://drive.google.com/file/d/1GOpc_CPQKhIoMYCaWywvbtBNiWeXqokI "
-          }
+          "UNIT 5": "https://drive.google.com/file/d/1GKbjSGoSabD1rB_e7PeMKqRtvIjLK4y2 "},
+        "AQSA ma'am notes": {
+          "UNIT 1": "https://drive.google.com/file/d/1GpTu_oRukWkB-2x4zmIcntWUbI-FX5Dp ",
+          "UNIT 2": "https://drive.google.com/file/d/1GI2hihZrFaZ0cwhn-KZgpbxwgiEqVd4N ",
+          "UNIT 3": "https://drive.google.com/file/d/1GmOpxc1yFRMQLNqS2txsjNHA7ZMduTk4 ",
+          "UNIT 4": "https://drive.google.com/file/d/1GfgRA3Hj2CRlCW6IzXKyySjgYZyuFHBE ",
+          "UNIT 5": "https://drive.google.com/file/d/1GOpc_CPQKhIoMYCaWywvbtBNiWeXqokI "
         },
         "papers": {
           "AKTU 2023-24": "https://www.abesit.in/wp-content/uploads/2024/07/BAS301-TECHNICAL-COMMUNICATION.pdf ",
@@ -519,7 +525,7 @@
           "ST-2": "https://drive.google.com/file/d/1FkMHIBLSoXfpUYsJHlTSRjA9imambfiG "
         },
         "Youtube video": {
-          "Playlist Gateway Classes": "https://youtube.com/playlist?list=PL-vEH_IPWrhDLjpdj5aloafN7GCXJDvcA&si=-7h2p3DHVQTQjBoX"
+          "Playlist Gateway Classes": ["https://youtube.com/playlist?list=PL-vEH_IPWrhDLjpdj5aloafN7GCXJDvcA&si=-7h2p3DHVQTQjBoX", "Watch Playlist"]
         }
       },
       "UHV": {
