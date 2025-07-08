@@ -122,16 +122,18 @@
             const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
             resourceHTML += `<br>`;
             // Check if content has sub-categories (nested objects) or direct items
-            if (Object.values(content)[0] && typeof Object.values(content)[0] === 'object') {
+            if (Object.values(content)[0] && typeof Object.values(content)[0] === 'object' && !Object.values(content)[0].url && !Array.isArray(Object.values(content)[0])) {
               // Content has sub-categories (e.g., teacher names), use each as a heading in table header
               for (const [subCategory, items] of Object.entries(content)) {
                 resourceHTML += `<table class="resource-table">`;
                 resourceHTML += `<thead><tr><th>${subCategory}</th><th></th></tr></thead>`;
                 resourceHTML += `<tbody>`;
-                for (const [item, file] of Object.entries(items)) {
+                for (const [item, resource] of Object.entries(items)) {
                   buttonCounter++;
                   const buttonId = `btn_${buttonCounter}`;
-                  resourceHTML += `<tr><td class="tblname">${item}</td><td class="tbllink"><button class="dlbtn" id="${buttonId}" onclick="handleDownloadClick('${file}', '${buttonId}')">Download</button></td></tr>`;
+                  const fileUrl = typeof resource === 'object' && resource.url ? resource.url : (Array.isArray(resource) ? resource[0] : resource);
+                  const buttonText = typeof resource === 'object' && resource.buttonName ? resource.buttonName : (Array.isArray(resource) && resource[1] ? resource[1] : 'Download');
+                  resourceHTML += `<tr><td class="tblname">${item}</td><td class="tbllink"><button class="dlbtn" id="${buttonId}" onclick="handleDownloadClick('${fileUrl}', '${buttonId}')">${buttonText}</button></td></tr>`;
                 }
                 resourceHTML += `</tbody></table>`;
                 resourceHTML += `<br>`;
@@ -141,11 +143,13 @@
               resourceHTML += `<table class="resource-table">`;
               resourceHTML += `<thead><tr><th>${categoryName}</th><th></th></tr></thead>`;
               resourceHTML += `<tbody>`;
-              for (const [item, file] of Object.entries(content)) {
+              for (const [item, resource] of Object.entries(content)) {
                 buttonCounter++;
                 const buttonId = `btn_${buttonCounter}`;
                 const itemName = item.charAt(0).toUpperCase() + item.slice(1);
-                resourceHTML += `<tr><td class="tblname">${itemName}</td><td class="tbllink"><button class="dlbtn" id="${buttonId}" onclick="handleDownloadClick('${file}', '${buttonId}')">Download</button></td></tr>`;
+                const fileUrl = typeof resource === 'object' && resource.url ? resource.url : (Array.isArray(resource) ? resource[0] : resource);
+                const buttonText = typeof resource === 'object' && resource.buttonName ? resource.buttonName : (Array.isArray(resource) && resource[1] ? resource[1] : 'Download');
+                resourceHTML += `<tr><td class="tblname">${itemName}</td><td class="tbllink"><button class="dlbtn" id="${buttonId}" onclick="handleDownloadClick('${fileUrl}', '${buttonId}')">${buttonText}</button></td></tr>`;
               }
               resourceHTML += `</tbody></table>`;
             }
